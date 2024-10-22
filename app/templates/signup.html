@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Define el conjunto de caracteres y la configuración para el diseño adaptable -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título de la pestaña en el navegador -->
+    <title>Registro de Usuario - Colabora</title>
+
+    <!-- Estilos CSS incluidos en la misma página -->
+    <style>
+        /* Importa la fuente Ubuntu desde Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+        /* Estilos generales del cuerpo (body) */
+        body {
+            font-family: 'Ubuntu', sans-serif; /* Cambiado a Ubuntu */
+            background-color: #F2F2F2;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos del encabezado (header) */
+        header {
+            background-color: white;
+            padding: 20px 100px; /* Espaciado dentro del encabezado */
+            display: flex;
+            justify-content: space-between; /* Distribuye elementos del header */
+            align-items: center;
+            border-bottom: 2px solid black; /* Línea bajo el encabezado */
+        }
+
+        /* Estilos del logo en el header */
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        /* Estilos para el contenedor principal que centra el formulario */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(80vh - 120px); /* Calcula altura para centrar verticalmente */
+        }
+
+        /* Estilos para la caja del formulario */
+        .form-box {
+            text-align: center;
+        }
+
+        /* Estilos para el título del formulario */
+        h2 {
+            font-size: 80px; /* Aumentar el tamaño de la letra del título */
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        /* Estilos para los campos de entrada (inputs) */
+        input {
+            width: 100%; /* Ancho completo del contenedor */
+            max-width: 500px; /* Ancho máximo de 500px */
+            padding: 20px; /* Espaciado interno de los campos */
+            margin-bottom: 20px; /* Espacio entre los campos */
+            border: 2px solid black;
+            border-radius: 30px; /* Bordes redondeados */
+            font-size: 18px;
+        }
+
+        /* Estilos para agrupar los botones */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Espaciado entre los botones */
+            margin-top: 20px;
+        }
+
+        /* Estilos generales para los botones */
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Animaciones */
+        }
+
+        /* Estilos para el botón "Cancelar" */
+        .cancel-btn {
+            background-color: #000; /* Fondo negro */
+            color: white; /* Texto blanco */
+            border: none;
+        }
+
+        /* Estilos para el botón "Registrarme" */
+        .submit-btn {
+            background-color: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Sombra alrededor del botón */
+        }
+
+        /* Efecto hover para el botón "Registrarme" */
+        .submit-btn:hover {
+            background-color: black;
+            color: white;
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+        }
+
+        /* Estilos para el mensaje de error */
+        .message {
+            color: red; /* El mensaje se muestra en rojo */
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado con el logo de la página -->
+    <header>
+        <div class="logo">Colabora</div>
+    </header>
+
+    <!-- Contenedor principal que centra el formulario -->
+    <div class="container">
+        <div class="form-box">
+            <!-- Título del formulario -->
+            <h2>Registro de Usuario</h2>
+
+            <!-- Mostrar mensaje de validación solo si existe un error -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="message">
+                        <!-- Itera sobre los mensajes de error y los muestra -->
+                        {% for category, message in messages %}
+                            {% if category == 'error' %}
+                                <p>{{ message }}</p> <!-- El mensaje aparece en rojo solo si es un error -->
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Formulario de registro con método POST -->
+            <form method="POST" action="{{ url_for('main.signup') }}">
+                <!-- Campo de entrada para el nombre del usuario -->
+                <input type="text" name="nombre" placeholder="Ingresa tu nombre" required>
+                
+                <!-- Campo de entrada para el correo electrónico -->
+                <input type="email" name="correo" placeholder="Ingresa tu correo electrónico" required>
+                
+                <!-- Campo de entrada para la contraseña -->
+                <input type="password" name="password" placeholder="Ingresa tu contraseña" required>
+
+                <!-- Grupo de botones "Cancelar" y "Registrarme" -->
+                <div class="button-group">
+                    <!-- Botón "Cancelar" que redirige a la página principal -->
+                    <button type="button" class="cancel-btn" onclick="window.location.href='{{ url_for('main.index') }}'">Cancelar</button>
+                    
+                    <!-- Botón "Registrarme" que envía el formulario -->
+                    <button type="submit" class="submit-btn">Registrarme</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+

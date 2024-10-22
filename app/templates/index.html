@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos básicos para el documento -->
+    <meta charset="UTF-8"> <!-- Define el juego de caracteres UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configuración de viewport para diseño adaptable -->
+    <title>Página de Inicio - Colabora</title> <!-- Título de la página -->
+
+    <!-- Estilos CSS en línea -->
+    <style>
+        /* Importación de la fuente Ubuntu desde Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+        /* Estilos generales del cuerpo de la página */
+        body {
+            font-family: 'Ubuntu', sans-serif; /* Fuente Ubuntu aplicada a todo el cuerpo */
+            margin: 0; /* Elimina los márgenes del cuerpo */
+            padding: 0; /* Elimina el padding del cuerpo */
+            background-color: #F2F2F2; /* Color de fondo gris claro */
+            position: relative; /* Posiciona el cuerpo relativamente para futuras referencias */
+            min-height: 100vh; /* Mínima altura del cuerpo para que ocupe toda la pantalla */
+        }
+
+        /* Estilos del encabezado (header) */
+        header {
+            background-color: white; /* Color de fondo blanco para el encabezado */
+            padding: 20px 100px; /* Espaciado interno (padding) del encabezado */
+            display: flex; /* Usa flexbox para organizar el contenido */
+            justify-content: space-between; /* Alinea los elementos a los extremos */
+            align-items: center; /* Centra verticalmente los elementos dentro del encabezado */
+            border-bottom: 2px solid black; /* Línea inferior negra en el encabezado */
+        }
+
+        .logo {
+            font-size: 50px; /* Tamaño del texto del logo */
+            font-weight: bold; /* Negrita para el logo */
+        }
+
+        /* Estilos para el menú de navegación */
+        .menu {
+            display: flex; /* Usa flexbox para alinear los elementos del menú */
+            gap: 50px; /* Espaciado entre los elementos del menú */
+        }
+
+        .menu a {
+            text-decoration: none; /* Elimina el subrayado de los enlaces */
+            font-size: 18px; /* Tamaño de la fuente del menú */
+            padding: 10px 20px; /* Espaciado interno para los enlaces */
+            border: 2px solid black; /* Borde negro alrededor de los enlaces */
+            border-radius: 20px; /* Bordes redondeados */
+            color: black; /* Color del texto negro */
+            background-color: white; /* Fondo blanco para los enlaces */
+            font-weight: bold; /* Negrita para los enlaces */
+            transition: background-color 0.3s, color 0.3s; /* Animación suave para los cambios de color */
+        }
+
+        .menu a:hover {
+            background-color: black; /* Fondo negro cuando se pasa el cursor */
+            color: white; /* Texto blanco cuando se pasa el cursor */
+        }
+
+        /* Estilos para el contenido principal de la página */
+        .main-content {
+            display: flex; /* Flexbox para organizar el contenido en columnas */
+            justify-content: space-between; /* Distribuye el contenido a los extremos */
+            align-items: center; /* Alinea verticalmente los elementos */
+            margin: 70px 100px; /* Espaciado interno alrededor del contenido */
+        }
+
+        /* Estilos para la sección de bienvenida (columna izquierda) */
+        .resume-section {
+            width: 45%; /* La columna izquierda ocupa el 45% del ancho */
+            text-align: center; /* Alinea el texto al centro */
+        }
+
+        .resume-section h1 {
+            font-size: 100px; /* Tamaño de la fuente para el título */
+            font-weight: bold; /* Negrita para el título */
+            margin-bottom: 50px; /* Espaciado inferior del título */
+        }
+
+        .resume-section p {
+            font-size: 24px; /* Tamaño del texto en el párrafo */
+            line-height: 1.6; /* Altura de la línea para mejorar legibilidad */
+            margin-bottom: 40px; /* Espaciado inferior del párrafo */
+        }
+
+        /* Estilos para los enlaces de contacto y políticas de privacidad */
+        .footer-links {
+            text-align: center; /* Alinea el texto al centro */
+            padding: 20px 0; /* Espaciado superior e inferior */
+            margin-top: 20px; /* Margen superior */
+        }
+
+        .footer-links a {
+            color: black; /* Color del texto negro */
+            text-decoration: none; /* Elimina el subrayado de los enlaces */
+            margin: 0 15px; /* Espaciado entre los enlaces */
+            font-size: 16px; /* Tamaño del texto de los enlaces */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra del texto */
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline; /* Subrayado cuando se pasa el cursor */
+        }
+
+        /* Estilos para la parte derecha (barra de búsqueda e imagen) */
+        .right-section {
+            width: 45%; /* La columna derecha ocupa el 45% del ancho */
+            display: flex; /* Flexbox para organizar contenido en columna */
+            flex-direction: column; /* Organiza los elementos verticalmente */
+            align-items: center; /* Centra los elementos horizontalmente */
+        }
+
+        /* Estilos para la barra de búsqueda */
+        .search-section {
+            display: flex; /* Flexbox para organizar el input y el botón juntos */
+            justify-content: center; /* Centra la barra de búsqueda */
+            width: 100%; /* Ancho completo */
+            max-width: 650px; /* Ancho máximo de la barra de búsqueda */
+            margin-bottom: 30px; /* Margen inferior */
+            position: relative; /* Posicionamiento relativo para manejar el botón */
+        }
+
+        .search-section input[type="text"] {
+            padding: 15px; /* Espaciado interno del campo de texto */
+            width: 100%; /* Ancho completo del input */
+            font-size: 16px; /* Tamaño del texto en el campo */
+            border: 2px solid black; /* Borde negro */
+            border-radius: 30px; /* Bordes redondeados */
+            padding-right: 100px; /* Espacio a la derecha para el botón */
+        }
+
+        .search-section button {
+            position: absolute; /* Botón posicionado absolutamente dentro del contenedor */
+            right: 0; /* Alinea el botón a la derecha */
+            top: 0; /* Alinea el botón en la parte superior */
+            bottom: 0; /* Alinea el botón en la parte inferior */
+            padding: 15px 30px; /* Espaciado interno del botón */
+            font-size: 16px; /* Tamaño del texto */
+            border-radius: 30px; /* Bordes redondeados */
+            background-color: black; /* Fondo negro */
+            color: white; /* Texto blanco */
+            border: 2px solid black; /* Borde negro */
+            cursor: pointer; /* Cambia el cursor al estilo de un botón */
+            transition: background-color 0.3s, color 0.3s; /* Transición suave en hover */
+        }
+
+        .search-section button:hover {
+            background-color: white; /* Cambia el fondo a blanco en hover */
+            color: black; /* Cambia el texto a negro en hover */
+        }
+
+        /* Estilos para la imagen debajo de la barra de búsqueda */
+        .image-section {
+            margin-top: 30px; /* Margen superior para separar la imagen de la barra de búsqueda */
+            display: flex; /* Flexbox para centrar la imagen */
+            justify-content: center; /* Alinea horizontalmente la imagen */
+        }
+
+        .image-section img {
+            width: 550px; /* Ancho de la imagen */
+            height: auto; /* Mantiene la proporción de la imagen */
+            border-radius: 1px; /* Ligeramente redondeado */
+            border: 2px solid black; /* Borde negro alrededor de la imagen */
+            padding: 1cm; /* Espaciado interno alrededor de la imagen */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Inicio del encabezado -->
+    <header>
+        <!-- Logo de la plataforma -->
+        <div class="logo">Colabora</div>
+        <!-- Menú con opciones de inicio de sesión y registro -->
+        <div class="menu">
+            <a href="{{ url_for('main.login') }}">Iniciar Sesión</a>
+            <a href="{{ url_for('main.signup') }}">Registro</a>
+        </div>
+    </header>
+
+    <!-- Sección principal con dos columnas: bienvenida y derecha -->
+    <div class="main-content">
+        <!-- Sección de bienvenida a la izquierda -->
+        <div class="resume-section">
+            <h1>Acerca de Colabora</h1>
+            <p>Somos una plataforma de preguntas y respuestas elegida por millones de personas para aprender y compartir sus conocimientos técnicos.</p>
+
+            <!-- Footer con contacto y políticas de privacidad justo debajo del texto de bienvenida -->
+            <div class="footer-links">
+                <a href="#">Contacto</a>
+                <a href="#">Políticas de Privacidad</a>
+            </div>
+        </div>
+
+        <!-- Sección derecha: barra de búsqueda e imagen debajo -->
+        <div class="right-section">
+            <!-- Barra de búsqueda -->
+            <div class="search-section">
+                <input type="text" placeholder="Escribe aquí tu duda">
+                <button>Buscar</button>
+            </div>
+
+            <!-- Imagen -->
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='study.jpg') }}" alt="Imagen sobre colaboración">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+

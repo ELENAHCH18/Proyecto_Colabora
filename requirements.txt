@@ -1,0 +1,10 @@
+Flask==2.0.1                      # Framework web para la aplicación
+Flask-SQLAlchemy==2.5.1            # Extensión de Flask para trabajar con bases de datos usando SQLAlchemy
+psycopg2==2.9.1                    # Adaptador de PostgreSQL para Python
+Werkzeug==2.0.1                    # Biblioteca WSGI que usa Flask
+Jinja2==3.0.1                      # Motor de plantillas que usa Flask
+itsdangerous==2.0.1                # Biblioteca para manejo de tokens seguros en Flask
+click==8.0.1                       # Biblioteca para crear comandos en línea
+gunicorn==20.1.0                   # Servidor WSGI que puedes usar para producción (opcional)
+python-dotenv==0.19.0              # Cargar variables de entorno desde un archivo .env
+bcrypt==3.2.0                      # Para el manejo de contraseñas en Flask (opcional si lo estás usando)

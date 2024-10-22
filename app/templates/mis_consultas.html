@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Consultas - Colabora</title>
+    <style>
+        /* Importar fuente Ubuntu */
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+        /* Estilos generales */
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F2F2;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: white;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: 2px solid black;
+            border-radius: 20px;
+            color: black;
+            background-color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            margin: 50px 100px;
+        }
+
+        .main-content h1 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos de consulta */
+        .consulta {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        .consulta-id {
+            font-weight: bold;
+        }
+
+        .consulta-info {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .consulta-info h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .consulta-info p {
+            margin: 5px 0;
+            color: gray;
+        }
+
+        .consulta-respuestas {
+            text-align: right;
+        }
+
+        .consulta-respuestas button {
+            padding: 0.5px 20px;
+            font-size: 16px;
+            border-radius: 20px;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .consulta-respuestas button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Centrar el mensaje cuando no hay consultas */
+        .no-consultas {
+            text-align: center;
+            color: gray;
+            font-size: 24px;
+            margin: 50px 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Estilos de los botones en el pie de página, alineados a la derecha */
+        .footer-buttons {
+            position: absolute;
+            bottom: 20px;
+            right: 100px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-buttons button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Ubuntu', sans-serif; /* Aplicar fuente Ubuntu a los botones */
+            border-radius: 20px;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Sombra en los botones */
+        }
+
+        .footer-buttons button:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Colabora</div>
+        <div class="menu">
+            <a href="{{ url_for('main.logout') }}">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h1>MIS CONSULTAS</h1>
+
+        {% if consultas %}
+            {% for consulta, categoria in consultas %}
+            <div class="consulta">
+                <div class="consulta-id">
+                    {% if consulta.id_question is not none %}
+                        CC{{ '{:07d}'.format(consulta.id_question) }}
+                    {% else %}
+                        ID desconocido
+                    {% endif %}
+                </div>
+                <div class="consulta-info">
+                    <h3>{{ consulta.title }}</h3>
+                    <p>Categoría: {{ categoria.category_name }}</p>
+                </div>
+                <div class="consulta-respuestas">
+                    <p>Respuestas: 0</p> <!-- Aquí puedes modificar según el número de respuestas -->
+                    <button>Abrir</button>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="no-consultas">
+            No tienes consultas publicadas
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer-buttons">
+        <button onclick="window.location.href='{{ url_for('main.nueva_consulta') }}'">Publicar Nueva Consulta</button>
+        <button onclick="window.location.href='{{ url_for('main.home') }}'">Regresar</button>
+    </div>
+
+</body>
+</html>
+
+

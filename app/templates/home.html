@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos: Conjunto de caracteres y configuración para dispositivos móviles -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Título que aparece en la pestaña del navegador -->
+    <title>Página de Inicio - Colabora</title>
+    
+    <!-- Importación de la fuente Ubuntu desde Google Fonts y definición de estilos -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+        /* Estilos generales del cuerpo */
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F2F2F2;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Estilos del encabezado */
+        header {
+            background-color: white;
+            padding: 20px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid black;
+        }
+
+        .logo {
+            font-size: 50px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 50px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: 2px solid black;
+            border-radius: 20px;
+            color: black;
+            background-color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        /* Sección principal */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 70px 100px;
+        }
+
+        /* Estilos para la sección de bienvenida a la izquierda */
+        .welcome-section {
+            width: 45%;
+            text-align: center;
+        }
+
+        .welcome-section h1 {
+            font-size: 100px;
+            font-weight: bold;
+            margin-bottom: 50px;
+        }
+
+        .welcome-section p {
+            font-size: 24px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: black;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sección de la derecha que contiene la barra de búsqueda e imagen */
+        .right-section {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search-section {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 30px;
+            position: relative;
+            font-family: 'Ubuntu', sans-serif; /* Aplicar fuente a la sección de búsqueda */
+        }
+
+        .search-section input[type="text"] {
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            border: 2px solid black;
+            border-radius: 30px;
+            padding-right: 100px;
+            font-family: 'Ubuntu', sans-serif; /* Aplicar fuente a la entrada de texto */
+        }
+
+        .search-section button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 30px;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Ubuntu', sans-serif; /* Aplicar fuente al botón */
+        }
+
+        .search-section button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .image-section {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-section img {
+            width: 550px;
+            height: auto;
+            border-radius: 1px;
+            border: 2px solid black;
+            padding: 1cm;
+        }
+    </style>
+</head>
+<body>
+    <!-- Encabezado con el logo y el menú de navegación -->
+    <header>
+        <div class="logo">Colabora</div>
+        <div class="menu">
+            <!-- Eliminado el enlace de perfil -->
+            <a href="{{ url_for('main.mis_consultas') }}">Mis Consultas</a>
+            <a href="{{ url_for('main.logout') }}">Cerrar sesión</a>
+        </div>
+    </header>
+
+    <!-- Sección principal que contiene la bienvenida y la parte de la derecha -->
+    <div class="main-content">
+        <div class="welcome-section">
+            <h1>¡Bienvenide {{ user.name }}!</h1>
+            <p>Has iniciado sesión con éxito. Usa el buscador para hacer preguntas o navegar en la plataforma.</p>
+
+            <div class="footer-links">
+                <a href="#">Contacto</a>
+                <a href="#">Políticas de Privacidad</a>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="search-section">
+                <input type="text" placeholder="Escribe aquí tu duda">
+                <button>Buscar</button>
+            </div>
+
+            <div class="image-section">
+                <img src="{{ url_for('static', filename='study.jpg') }}" alt="Imagen sobre colaboración">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
